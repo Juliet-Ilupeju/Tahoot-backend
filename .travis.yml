@@ -1,0 +1,18 @@
+arch: amd64
+language: java
+jdk:
+  - openjdk15
+cache:
+directories:
+  - $HOME/.m2
+before_install:
+  - chmod +x mvnw
+script:
+  - java --version
+  - ./mvnw clean install
+  - ./mvnw test
+
+deploy:
+  provider: heroku
+  api_key: $secrets.HEROKU_API_KEY
+  app: tahoot-backend
